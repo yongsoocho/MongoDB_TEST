@@ -1,0 +1,30 @@
+{
+  "name": "mongodb_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "nodemon node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://e53d8b66ce2fc43f3142f34324e850709fc42ab2@github.com/yongsoocho/MongoDB_TEST.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yongsoocho/MongoDB_TEST/issues"
+  },
+  "homepage": "https://github.com/yongsoocho/MongoDB_TEST#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.19"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
