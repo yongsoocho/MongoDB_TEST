@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
+		required: true,
 		unique: true
 	},
 	job: {
@@ -26,4 +27,3 @@ const UserSchema = new mongoose.Schema({
 const model = mongoose.model('User', UserSchema);
 
 module.exports = model;
-
