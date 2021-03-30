@@ -7,7 +7,8 @@ module.exports = async () => {
 		mongoose.connect('mongodb+srv://root:0302@cluster0.z41sh.mongodb.net/test?retryWrites=true&w=majority', {
 			useNewUrlParser: true,
 			useCreateIndex: true,
-			useUnifiedTopology: true
+			useUnifiedTopology: true,
+			useFindAndModify: false
 		});
 		
 		mongoose.set('debug', true);

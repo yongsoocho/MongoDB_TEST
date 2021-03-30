@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const userRouter = require('./routes/userRouter');
 const globalRouter = require('./routes/globalRouter');
 const blogRouter = require('./routes/blogRouter');
+const commentRouter = require('./routes/commentRouter');
 const morgan = require('morgan');
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
 
 app.use('/', globalRouter);
+app.use('/blog/:blogId/comment', commentRouter);
 app.use('/blog', blogRouter);
 app.use('/user', userRouter);
 
