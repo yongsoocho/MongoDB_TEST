@@ -54,21 +54,39 @@ userRouter.delete('/:userId', async (req, res, next) => {
 	}
 });
 
+// userRouter.put('/:userId', async (req, res, next) => {
+// 	try{
+// 		const { userId } = req.params;
+// 		const { name, age, NIN, email } = req.body;
+// 		if(mongoose.isValidObjectId(userId)) {
+// 			const updateBody = {};
+// 			if(name) updateBody.name = name;
+// 			if(age) updateBody.age = age;
+// 			if(NIN) updateBody.NIN = NIN;
+// 			if(email) updateBody.email = email;
+// 			const putUser = await User.findByIdAndUpdate(userId, updateBody, { new: true });
+// 			return res.status(200).json(putUser);
+// 		}else{
+// 			return res.status(500).send({ err: 'Not user id' });
+// 		}
+// 	}catch(err){
+// 		console.log(err);
+// 		return res.status(500).send({ err: err.message });
+// 	}
+// });
 userRouter.put('/:userId', async (req, res, next) => {
 	try{
 		const { userId } = req.params;
-		const { name } = req.body;
-		if(mongoose.isValidObjectId(userId)) {
-			const { age } = req.body;
-			const putUser = await User.findByIdAndUpdate(userId, {
-				$set:{
-					age,
-					name
-				}
-			}, {
-				new: true
-			});
-			return res.status(200).json(putUser);
+		const { age, name, NIN, email, job } = req.body;
+		if(mongoose.isValidObjectId(userId)){
+			const user = await User.findById(userId);
+			if(age) user.age = age;
+			if(name) user.name = name;
+			if(NIN) user.NIN = NIN;
+			if(email) user.email = email;
+			if(job) user.job = job;
+			await user.save();	// updateOne() is called
+			return res.status(200).json(user);
 		}else{
 			return res.status(500).send({ err: 'Not user id' });
 		}
