@@ -23,9 +23,7 @@ blogRouter.post('/', async (req, res, next) => {
 			if(!exUser){
 				return res.status(400).send({ err:"userId is invalid" })
 			}
-			
-			console.log(exUser);
-			const blog = new Blog({ ...req.body, exUser });	// mongoose extract userId where in exUser
+			const blog = new Blog({ ...req.body, user: exUser });	// mongoose extract userId where in exUser
 			await blog.save();
 			return res.status(201).json(blog);
 		}else{
