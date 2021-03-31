@@ -8,11 +8,18 @@ const globalRouter = require('./routes/globalRouter');
 const blogRouter = require('./routes/blogRouter');
 const commentRouter = require('./routes/commentRouter');
 const morgan = require('morgan');
+const { generateFakeData } = require('./faker');
 const app = express();
 
 
 dotenv.config();
 db();
+
+// const faker = async () => {
+// 	await generateFakeData(100, 10, 300);
+// 	return console.log('Data Done');
+// };
+// faker();
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended:false }));

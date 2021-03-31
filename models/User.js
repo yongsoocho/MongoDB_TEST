@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
 	name: {
-		type: String,
-		required: true
+		first:{
+			type: String,
+			required: true
+		},
+		last:{
+			type: String,
+			required: true
+		}
 	},
 	age: {
 		type: Number
@@ -13,14 +19,8 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true
 	},
-	job: {
-		type: String,
-		default: 'None'
-	},
-	NIN: {
-		type: Number,
-		unique: true,
-		default: true
+	username: {
+		type: String
 	}
 }, {
 	timestamps: true

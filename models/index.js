@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 module.exports = async () => {
 	try{
 		dotenv.config();
-		mongoose.connect('mongodb+srv://root:0302@cluster0.z41sh.mongodb.net/test?retryWrites=true&w=majority', {
+		mongoose.connect('mongodb+srv://root:0302@cluster0.z41sh.mongodb.net/inflearn?retryWrites=true&w=majority', {
 			useNewUrlParser: true,
 			useCreateIndex: true,
 			useUnifiedTopology: true,
