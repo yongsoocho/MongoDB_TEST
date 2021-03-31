@@ -7,7 +7,10 @@ const User = require('../models/User');
 commentRouter.get('/', async (req, res, next) => {
 	try{
 		const { blogId } = req.params;
-		return res.status(200).send(blogId);
+		if(!mongoose.isValidObjectId(blogId)) res.status(400).send({ err:"blogId is not ObectId" });
+		
+		const comments = await Comment.find({ blog: blogId });
+		return res.status(200).json(comments);
 	}catch(err){
 		console.log(err);
 		return res.status(500).send({ err: err.message });

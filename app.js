@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const db = require('./models');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/userRouter');
+// const { userRouter, blogRouter, globalRouter } = require('./routes');
 const globalRouter = require('./routes/globalRouter');
 const blogRouter = require('./routes/blogRouter');
 const commentRouter = require('./routes/commentRouter');
