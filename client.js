@@ -34,7 +34,7 @@ const test2 = async () => {
 	console.time("test2 time: ");
 	try{
 		let result = await axios.get(`${URL}/blog`);
-		console.log(result.data);
+		// console.dir(result.data[0], { depth: 10 });
 	}catch(err){
 		console.log(err);
 	}
@@ -49,10 +49,10 @@ const testGroup = async () => {
 	// await test();
 
 	await test2();
-	// await test2();
-	// await test2();
-	// await test2();
-	// await test2();
+	await test2();
+	await test2();
+	await test2();
+	await test2();
 };
 
 testGroup();
