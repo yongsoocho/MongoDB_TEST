@@ -1,3 +1,4 @@
+const { CommentSchema } = require('./Comment');
 const mongoose = require('mongoose');
 
 const BlogSchema = new mongoose.Schema({
@@ -15,22 +16,39 @@ const BlogSchema = new mongoose.Schema({
 		default: false
 	},
 	user: {
-		type: mongoose.Types.ObjectId,
-		required: true,
-		ref: 'User'
-	}
+		_id: {
+			type: mongoose.Types.ObjectId,
+			required: true,
+			ref: 'User'
+		},
+		username: {
+			type: String,
+			required: true
+		},
+		name: {
+			first:{
+				type: String,
+				required: true
+			},
+			last:{
+				type: String,
+				required: true
+			}
+		}
+	},
+	comments:[CommentSchema]
 }, {
 	timestamps: true
 });
 
-BlogSchema.virtual("comments", {
-	ref:"Comment",
-	localField:"_id",	// BlogSchema _id
-	foreignField:"blog"	// CommentSchema blog
-});
+// BlogSchema.virtual("comments", {
+// 	ref:"Comment",
+// 	localField:"_id",	// BlogSchema _id
+// 	foreignField:"blog"	// CommentSchema blog
+// });
 
-BlogSchema.set("toObject", { virtuals: true });
-BlogSchema.set("toJSON", { virtuals: true });
+// BlogSchema.set("toObject", { virtuals: true });
+// BlogSchema.set("toJSON", { virtuals: true });
 
 const model = mongoose.model('Blog', BlogSchema);
 

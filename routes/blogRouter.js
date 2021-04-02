@@ -58,13 +58,14 @@ blogRouter.put('/:blogId', async (req, res, next) => {	// edit entire
 		const { blogId } = req.params;
 		if(!mongoose.isValidObjectId(blogId)) res.status(400).send({ err:"blogId is invalid" })
 		
-		const { title, content } = req.body;
+		const { title, content, isLive } = req.body;
 		if(typeof title !== "string") res.status(400).send({ err:"title must be string" });
 		if(typeof content !== "string") res.status(400).send({ err:"content must be string" });
 		
 		const updateBody = {};
 		if(title) updateBody.title = title;
 		if(content) updateBody.content = content;
+		if(isLive) updateBody.isLive = content;
 		
 		const blog = await Blog.findOneAndUpdate({ _id:blogId }, updateBody, {
 			new: true

@@ -1,6 +1,6 @@
 const commentRouter = require('express').Router({ mergeParams:true });
 const mongoose = require('mongoose');
-const Comment = require('../models/Comment');
+const Comment = require('../models/Comment').model;
 const Blog = require('../models/Blog');
 const User = require('../models/User');
 
@@ -32,11 +32,16 @@ commentRouter.post('/', async (req, res, next) => {
 		// const blog = await Blog.findById(blogId);
 		// const user = await User.findById(userId);
 		
-		if(!blog || !user) res.status(400).send({ err:"404 NOT FOUND ERROR:blog or user" });
+		// if(!blog || !user) res.status(400).send({ err:"404 NOT FOUND ERROR:blog or user" });
 		
 		if(blog.isLive == false) res.status(400).send({ err:"404 NOT FOUND ERROR:blog is not on live" });
 		const comment = new Comment({ content, user, blog });
-		await comment.save();
+		// await comment.save();
+		// await Blog.updateOne({ _id:blogId }, { $push: { comments: comment } });
+		await Promise.all([
+			comment.save(),
+			Blog.updateOne({ _id:blogId }, { $push: { comments: comment } })
+		])
 		return res.status(200).json(comment);
 	}catch(err){
 		console.log(err);
