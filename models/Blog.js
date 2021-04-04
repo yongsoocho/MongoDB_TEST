@@ -36,7 +36,7 @@ const BlogSchema = new mongoose.Schema({
 			}
 		}
 	},
-	comments:[CommentSchema]
+	comments:[CommentSchema] // import schema or write all
 }, {
 	timestamps: true
 });

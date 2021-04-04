@@ -77,10 +77,9 @@ userRouter.delete('/:userId', async (req, res, next) => {
 userRouter.put('/:userId', async (req, res, next) => {
 	try{
 		const { userId } = req.params;
-		const { age, name, NIN, email, job } = req.body;
+		const { name, NIN, email, job } = req.body;
 		if(mongoose.isValidObjectId(userId)){
 			const user = await User.findById(userId);
-			if(age) user.age = age;
 			if(name) user.name = name;
 			if(NIN) user.NIN = NIN;
 			if(email) user.email = email;

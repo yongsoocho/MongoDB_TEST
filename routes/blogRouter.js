@@ -7,7 +7,7 @@ blogRouter.get('/', async (req, res, next) => {
 	try{
 		const blogs = await Blog.find({})
 		.limit(10)
-		.populate([ { path:"user" }, { path:"comments", populate: { path:"user" } } ]);
+		// .populate([ { path:"user" }, { path:"comments", populate: { path:"user" } } ]);
 		return res.json(blogs);
 	}catch(err){
 		console.log(err);
@@ -65,7 +65,7 @@ blogRouter.put('/:blogId', async (req, res, next) => {	// edit entire
 		const updateBody = {};
 		if(title) updateBody.title = title;
 		if(content) updateBody.content = content;
-		if(isLive) updateBody.isLive = content;
+		if(isLive.toString()) updateBody.isLive = isLive;
 		
 		const blog = await Blog.findOneAndUpdate({ _id:blogId }, updateBody, {
 			new: true

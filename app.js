@@ -9,6 +9,7 @@ const blogRouter = require('./routes/blogRouter');
 const commentRouter = require('./routes/commentRouter');
 const morgan = require('morgan');
 const { generateFakeData } = require('./faker');
+const { generateFakeData2 } = require('./faker2');
 const app = express();
 
 
@@ -21,9 +22,16 @@ db();
 // };
 // faker();
 
+// const faker2 = async () => {
+// 	await generateFakeData2(10, 20, 30);
+// 	return console.log('Data Done');
+// };
+// faker2();
+
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
+
 
 app.use('/', globalRouter);
 app.use('/blog/:blogId/comment', commentRouter);

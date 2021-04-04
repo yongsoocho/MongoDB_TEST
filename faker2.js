@@ -1,9 +1,11 @@
 const faker = require("faker");
-const { User } = require("./src/models");
+const User = require("./models/User");
+const Blog = require("./models/Blog");
+const { Comment } = require("./models/Comment");
 const axios = require("axios");
 const URI = "http://localhost:3000";
 
-generateFakeData = async (userCount, blogsPerUser, commentsPerUser) => {
+generateFakeData2 = async (userCount, blogsPerUser, commentsPerUser) => {
   try {
     if (typeof userCount !== "number" || userCount < 1)
       throw new Error("userCount must be a positive integer");
@@ -53,8 +55,9 @@ generateFakeData = async (userCount, blogsPerUser, commentsPerUser) => {
     users.map((user) => {
       for (let i = 0; i < commentsPerUser; i++) {
         let index = Math.floor(Math.random() * blogs.length);
+		console.dir(newBlogs[index].data, { depth: 10 });
         comments.push(
-          axios.post(`${URI}/blog/${newBlogs[index].data.blog._id}/comment`, {
+          axios.post(`${URI}/blog/${newBlogs[index].data._id}/comment`, {
             content: faker.lorem.sentence(),
             userId: user.id,
           })
@@ -70,4 +73,4 @@ generateFakeData = async (userCount, blogsPerUser, commentsPerUser) => {
   }
 };
 
-module.exports = { generateFakeData };
+module.exports = { generateFakeData2 };
