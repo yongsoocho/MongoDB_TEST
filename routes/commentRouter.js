@@ -62,7 +62,7 @@ commentRouter.patch('/:commentId', async (req, res, next) => {
 		Blog.updateOne(
 			{ 'comments._id': commentId }, 
 			{ 'comments.$.content': content }
-		)
+		)	// change one in array
 	]);
 	
 	return res.status(200).json(comment);

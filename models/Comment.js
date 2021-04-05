@@ -9,10 +9,9 @@ const CommentSchema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: 'User'
 	},
-	// userFullName: {
-	// 	type: mongoose.Types.ObjectId,
-	// 	required:true,
-	// },
+	userFullName: {
+		type: mongoose.Types.ObjectId,
+	},
 	blog: {
 		type: mongoose.Types.ObjectId,
 		required: true,

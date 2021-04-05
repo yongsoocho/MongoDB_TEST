@@ -11,7 +11,7 @@ module.exports = async () => {
 			useFindAndModify: false
 		});
 		
-		mongoose.set('debug', true);
+		// mongoose.set('debug', true);
 		
 		mongoose.connection.on('open', () => {
 			console.log('Connecting on MongoDB!');

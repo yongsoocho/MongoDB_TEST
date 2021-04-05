@@ -17,13 +17,13 @@ dotenv.config();
 db();
 
 // const faker = async () => {
-// 	await generateFakeData(100, 10, 300);
+// 	await generateFakeData(100000, 0, 0);
 // 	return console.log('Data Done');
 // };
 // faker();
 
 // const faker2 = async () => {
-// 	await generateFakeData2(10, 20, 30);
+// 	await generateFakeData2(5, 10, 15);
 // 	return console.log('Data Done');
 // };
 // faker2();

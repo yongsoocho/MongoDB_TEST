@@ -80,7 +80,13 @@ userRouter.put('/:userId', async (req, res, next) => {
 		const { name, NIN, email, job } = req.body;
 		if(mongoose.isValidObjectId(userId)){
 			const user = await User.findById(userId);
-			if(name) user.name = name;
+			if(name) {
+				user.name = name;
+				await Blog.updateMany({ "user._id": userId }, { "user.name": name });	// '$' on array, omit in object
+				await Blog.updateMany({}, 
+									  { "comment.$[element].userFullName": `${name.first} ${name.last}` }, 
+									  { arrayFilters:[{ "element.user._id":userId }] });
+			};
 			if(NIN) user.NIN = NIN;
 			if(email) user.email = email;
 			if(job) user.job = job;
